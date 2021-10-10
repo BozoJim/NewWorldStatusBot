@@ -4,7 +4,7 @@ New World Discord Bot is a simple bot which can pull data from https://nwdb.info
 
 ## Installations
 
-You either need node 14+ and chrome installed or docker.
+You either need node 16+ and chrome installed or docker.
 
 ## Create your own application
 
@@ -12,8 +12,8 @@ Go to https://discord.com/developers/applications and create a New Application
 
 ## Clone the repo
 ```
-git clone https://github.com/JimBozo/NWStatusBot
-cd NWStatusBot
+git clone https://github.com/BozoJim/NewWorldStatusBot
+cd NewWorldStatusBot
 ```
 
 ## Configure config.json
@@ -25,3 +25,19 @@ Client ID and Application ID are the same. Find this in General Information add 
 Token is the token to access your bot. Keep this one safe! After creating a bot via the Bot tab, click the `Click to Reveal Token` button. Copy that to `tokenID`.
 
 Guild ID is the id of the channel if you want to use slash commands. Add the ID of your channel as `guildId`.
+
+# Run it
+
+You have two options to run it. You can run it via node 16, or you can run it via docker.
+
+## Node
+
+Install Node 16: https://nodejs.org/en/
+Depending on your system you may or may not have to mess with manually installing chrome or chromium.
+`node .`
+
+## Docker
+
+`docker build . -t new-world-status-bot`
+
+`docker run --rm -d --name new_world_status_bot new-world-status-bot`
