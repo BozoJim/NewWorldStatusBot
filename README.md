@@ -4,7 +4,7 @@ New World Discord Bot is a simple bot which can pull data from https://nwdb.info
 
 ## Installations
 
-You either need node 16+ and chrome installed or docker.
+You either need node 16+ installed or docker.
 
 ## Create your own application
 
@@ -33,7 +33,7 @@ You have two options to run it. You can run it via node 16, or you can run it vi
 ## Node
 
 Install Node 16: https://nodejs.org/en/
-Depending on your system you may or may not have to mess with manually installing chrome or chromium.
+
 `node .`
 
 ## Docker
