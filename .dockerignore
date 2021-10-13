@@ -1,1 +1,8 @@
+.dockerignore
+.gitignore
+.tool-versions
+config.json.example
+Dockerfile
 node_modules
+README.md
+rebuild_and_redeploy.ps1
