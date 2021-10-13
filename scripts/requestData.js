@@ -3,29 +3,47 @@ const getJSON = bent('json')
 
 module.exports = {
   getData: async function getData(server) {
-    // Server defaults to Atvatabar if nothing is provided
-    server = (server == undefined) ? 'Atvatabar' : server
-
-    let response = await getJSON('https://nwdb.info/server-status/data.json')
+    let response = await getJSON('https://nwdb.info/server-status/servers.json?worldId=7aeea1ba2301')
     let filteredResponse = response.data.servers.filter((item) => item.worldName === server)[0]
+
+    const expectedFormat = [
+      "connectionCountMax",
+      "connectionCount",
+      "queueCount",
+      "queueTime",
+      "worldName",
+      "worldSetName",
+      "region",
+      "status",
+      "active",
+      "worldId"
+    ]
+
+    let formattedResponse = {}
+    for (let index = 0; index < expectedFormat.length; index++) {
+      formattedResponse[expectedFormat[index]] = filteredResponse[index]
+    }
     
-    let current = filteredResponse.connectionCount
-    let max = filteredResponse.connectionCountMax
+    let current = formattedResponse.connectionCount
+    let max = formattedResponse.connectionCountMax
     let onlinePlayers = playersOnline(current, max)
-    let queue = filteredResponse.queueCount
-    let queueTime = filteredResponse.queueTime
+    let queue = formattedResponse.queueCount
+    let queueTime = formattedResponse.queueTime
     queueTime = timeDisplay(queueTime)
-    let world = filteredResponse.worldName
-    let worldSet = filteredResponse.worldSetName
-    let region = filteredResponse.region
+    let world = formattedResponse.worldName
+    let worldSet = formattedResponse.worldSetName
+    let region = formattedResponse.region
     region = regionConvert(region)
-    let status = translateStatus(filteredResponse.status)
-    let active = filteredResponse.active // no idea what this is used for
+    let status = translateStatus(formattedResponse.status)
+    let active = formattedResponse.active // Used by amazon to decide if they should show the list in the game browser.
+    let worldId = formattedResponse.worldId // we don't need this
+    let characterCreation = characterCreationLocked(status)
 
     let stringResponse =
 `Status:  ${status}
 World:  ${world}
 World Set:  ${worldSet}
+Character Creation:  ${characterCreation}
 Region:  ${region}
 Online Players:  ${onlinePlayers}
 In Queue:  ${queue}
@@ -38,11 +56,23 @@ Queue Time:  ${queueTime}`
 function translateStatus(serverStatus) {
   switch (serverStatus) {
     case 0:
+    case 8:
       return 'Online';
     case 1:
       return 'Maintenance'
     default:
       return 'Down'
+  }
+}
+
+function characterCreationLocked(serverStatus) {
+  switch (serverStatus) {
+    case 0:
+    case 1:
+    case 2:
+      return 'Unlocked';
+    default:
+      return 'Locked'
   }
 }
 
