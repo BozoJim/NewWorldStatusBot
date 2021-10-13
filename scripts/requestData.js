@@ -58,7 +58,8 @@ function translateStatus(serverStatus) {
     case 0:
     case 8:
       return 'Online';
-    case 1:
+    case 4:
+    case 12:
       return 'Maintenance'
     default:
       return 'Down'
@@ -68,8 +69,7 @@ function translateStatus(serverStatus) {
 function characterCreationLocked(serverStatus) {
   switch (serverStatus) {
     case 0:
-    case 1:
-    case 2:
+    case 4:
       return 'Unlocked';
     default:
       return 'Locked'
