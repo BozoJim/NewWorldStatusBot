@@ -94,8 +94,14 @@ function regionConvert(region) {
   switch (region) {
     case 'us-east-1':
       return 'US East'
-    case 'us-west-1':
-      return 'US West'  
+    case 'us-west-2':
+      return 'US West'
+    case 'ap-southeast-2':
+      return 'AP Southeast'
+    case 'eu-central-1':
+      return 'EU Central'
+    case 'sa-east-1':
+      return 'SA East'
     default:
       return region
   }
