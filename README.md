@@ -18,13 +18,15 @@ cd NewWorldStatusBot
 
 ## Configure config.json
 
-Rename or copy `config.json.example` to `config.json`. This is where you'll store your secrets.
+Rename or copy `.env.example` to `.env`. This is where you'll store your secrets.
 
-Client ID and Application ID are the same. Find this in General Information add it it to your `config.json` as `clientID`.
+Client ID and Application ID are the same. Find this in General Information add it it to your `.env` as `CLIENT_ID`.
 
-Token is the token to access your bot. Keep this one safe! After creating a bot via the Bot tab, click the `Click to Reveal Token` button. Copy that to `tokenID`.
+Token is the token to access your bot. Keep this one safe! After creating a bot via the Bot tab, click the `Click to Reveal Token` button. Copy that to `TOKEN_ID`.
 
-Guild ID is the id of the channel if you want to use slash commands. Add the ID of your channel as `guildId`.
+Guild ID is the id of the channel if you want to use slash commands. Add the ID of your channel as `GUILD_ID`.
+
+Alternatively, you can just use environment variables.
 
 # Run it
 

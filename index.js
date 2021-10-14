@@ -1,8 +1,8 @@
-
+require('dotenv').config()
 const fs = require('fs');
 const { Client, Intents } = require('discord.js');
 
-const { token } = require('./config.json');
+const token = process.env.TOKEN
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
