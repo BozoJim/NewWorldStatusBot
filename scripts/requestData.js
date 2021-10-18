@@ -2,9 +2,21 @@ const bent = require('bent')
 const getJSON = bent('json')
 
 module.exports = {
-  getData: async function getData(server) {
-    let response = await getJSON('https://nwdb.info/server-status/servers.json?worldId=7aeea1ba2301')
-    let filteredResponse = response.data.servers.filter((item) => item.worldName === server)[0]
+  getData: async function getData(serverQuery) {
+    let response, filteredResponse;
+
+    if (serverQuery === undefined || serverQuery.toLowerCase() === 'atvatabar') {
+      response = await getJSON('https://nwdb.info/server-status/servers.json?worldId=7aeea1ba2301')
+      filteredResponse = response.data.servers[0]
+    } else {
+      response = await getJSON('https://nwdb.info/server-status/servers.json')
+      let serverIndex = response.data.servers.map((server) => server[4].toLowerCase()).indexOf(serverQuery.toLowerCase())
+      if (serverIndex > -1) {
+        filteredResponse = response.data.servers[serverIndex]
+      } else {
+        return `No results found for ${serverQuery}`
+      }
+    }
 
     const expectedFormat = [
       "connectionCountMax",
