@@ -18,6 +18,7 @@ module.exports = {
       }
     }
 
+    
     const expectedFormat = [
       "connectionCountMax",
       "connectionCount",
@@ -30,7 +31,7 @@ module.exports = {
       "active",
       "worldId"
     ]
-
+    
     let formattedResponse = {}
     for (let index = 0; index < expectedFormat.length; index++) {
       formattedResponse[expectedFormat[index]] = filteredResponse[index]
@@ -49,7 +50,7 @@ module.exports = {
     let status = translateStatus(formattedResponse.status)
     let active = formattedResponse.active // Used by amazon to decide if they should show the list in the game browser.
     let worldId = formattedResponse.worldId // we don't need this
-    let characterCreation = characterCreationLocked(status)
+    let characterCreation = characterCreationLocked(formattedResponse.status)
 
     let stringResponse =
 `Status:  ${status}
