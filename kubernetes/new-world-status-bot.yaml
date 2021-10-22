@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2021-10-14T01:37:24Z"
   generation: 2
   labels:
     app: new-world-status-bot
@@ -114,8 +113,6 @@ metadata:
     time: "2021-10-14T01:37:30Z"
   name: new-world-status-bot
   namespace: default
-  resourceVersion: "85375"
-  uid: 388c0c42-096f-41b7-8779-0893fc6625c2
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -130,7 +127,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: new-world-status-bot
     spec:
