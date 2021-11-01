@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer");
 
 module.exports = {
-  collectData: async function collectData() {
+  getData: async function getData() {
     // const { chrome } = require('../config.json');
     const browser = await puppeteer.launch({
       executablePath: "/usr/bin/chromium-browser",
