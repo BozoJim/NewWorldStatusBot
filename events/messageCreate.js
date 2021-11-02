@@ -9,8 +9,10 @@ module.exports = {
             console.log(`responding to nwstatus request from ${message.author.username}`)
             let searchString = message.content.split(" ")[1]
             const serverStatus = require('../scripts/scrapePage')
-            serverStatus.getData(searchString).then((result) => {
-                message.reply(result)
+            message.reply("fetching results from nwdb.info...").then((botResponse) => {
+                serverStatus.getData(searchString).then((result) => {
+                    botResponse.edit(result)
+                })
             })
         }
 	},
